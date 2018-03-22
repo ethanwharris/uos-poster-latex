@@ -52,12 +52,18 @@
 }
 
 \definetitlestyle{FilledSwap}{
-	width=\paperwidth, roundedcorners=0, linewidth=0pt, innersep=1.5cm,
+	width=\paperwidth, roundedcorners=0, linewidth=2pt, innersep=1.5cm,
 	titletotopverticalspace=0mm, titletoblockverticalspace=20mm,
 	titlegraphictotitledistance=10pt
 }{
 	\draw[draw=none, fill=titlefgcolor]%
 	(\titleposleft,\titleposbottom) rectangle (\titleposright,\titlepostop); %
+	\draw[titlebgcolor, line width=\titlelinewidth]%
+	(\titleposleft + 12\titleinnersep,\titleposbottom) rectangle (\titleposright - 12\titleinnersep,\titleposbottom - \titlelinewidth); %
+	\draw[draw=none, left color=backgroundcolor, right color=titlebgcolor, line width=\titlelinewidth]%
+	(\titleposleft + 2\titleinnersep,\titleposbottom) rectangle (\titleposleft + 12\titleinnersep,\titleposbottom - \titlelinewidth); %
+	\draw[draw=none, right color=backgroundcolor, left color=titlebgcolor, line width=\titlelinewidth]%
+	(\titleposright - 12\titleinnersep,\titleposbottom) rectangle (\titleposright - 2\titleinnersep,\titleposbottom - \titlelinewidth); %
 }
 
 \definecolorstyle{SotonBrandStyle}{}{
