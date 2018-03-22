@@ -33,6 +33,7 @@
 		(blockbody.north west) [rounded corners=30] -- (blockbody.south west) --
 		(blockbody.south east) [rounded corners=0]-- (blockbody.north east) -- cycle;
 	}
+	\colorlet{blocktitlefgcolor}{white}
 	\useblockstyle{SotonSlide}
 }
 
@@ -51,19 +52,33 @@
 	(blockbody.south east) [rounded corners=0]-- (blockbody.north east) -- cycle;
 }
 
+\defineblockstyle{Underline}{
+	titlewidthscale=1, bodywidthscale=1, titleleft,
+	titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+	bodyverticalshift=0pt, roundedcorners=0, linewidth=2pt, titleinnersep=1cm,
+	bodyinnersep=1cm
+}{
+	\ifBlockHasTitle%
+	\shade[draw=none, left color=blocktitlebgcolor, right color=blocktitlebgcolor]
+	($(blocktitle.south west)+(3.9\blocktitleinnersep,0)$) rectangle ($(blocktitle.south east)-(3.9\blocktitleinnersep,\blocklinewidth)$);
+	\shade[draw=none, left color=backgroundcolor, right color=blocktitlebgcolor]
+	($(blocktitle.south west)+(0,0)$) rectangle ($(blocktitle.south west)+(4\blocktitleinnersep,-\blocklinewidth)$);
+	\shade[draw=none, right color=backgroundcolor, left color=blocktitlebgcolor]
+	($(blocktitle.south east)-(4\blocktitleinnersep,\blocklinewidth)$) rectangle ($(blocktitle.south east)-(0,0)$);
+	\fi%
+}
+
 \definetitlestyle{FilledSwap}{
 	width=\paperwidth, roundedcorners=0, linewidth=2pt, innersep=1.5cm,
 	titletotopverticalspace=0mm, titletoblockverticalspace=20mm,
 	titlegraphictotitledistance=10pt
 }{
-	\draw[draw=none, fill=titlefgcolor]%
-	(\titleposleft,\titleposbottom) rectangle (\titleposright,\titlepostop); %
-	\draw[titlebgcolor, line width=\titlelinewidth]%
-	(\titleposleft + 12\titleinnersep,\titleposbottom) rectangle (\titleposright - 12\titleinnersep,\titleposbottom - \titlelinewidth); %
-	\draw[draw=none, left color=backgroundcolor, right color=titlebgcolor, line width=\titlelinewidth]%
-	(\titleposleft + 2\titleinnersep,\titleposbottom) rectangle (\titleposleft + 12\titleinnersep,\titleposbottom - \titlelinewidth); %
-	\draw[draw=none, right color=backgroundcolor, left color=titlebgcolor, line width=\titlelinewidth]%
-	(\titleposright - 12\titleinnersep,\titleposbottom) rectangle (\titleposright - 2\titleinnersep,\titleposbottom - \titlelinewidth); %
+	\shade[draw=none, left color=titlebgcolor, right color=titlebgcolor]
+	(\titleposleft + 11.9\titleinnersep,\titleposbottom) rectangle (\titleposright - 11.9\titleinnersep,\titleposbottom - \titlelinewidth); 
+	\shade[draw=none, left color=backgroundcolor, right color=titlebgcolor]
+	(\titleposleft + 2\titleinnersep,\titleposbottom) rectangle (\titleposleft + 12\titleinnersep,\titleposbottom - \titlelinewidth);
+	\shade[draw=none, right color=backgroundcolor, left color=titlebgcolor]
+	(\titleposright - 12\titleinnersep,\titleposbottom) rectangle (\titleposright - 2\titleinnersep,\titleposbottom - \titlelinewidth);
 }
 
 \definecolorstyle{SotonBrandStyle}{}{
@@ -75,7 +90,7 @@
 	\colorlet{titlebgcolor}{marine1}
 	% Block Colors
 	\colorlet{blocktitlebgcolor}{marine1}
-	\colorlet{blocktitlefgcolor}{white}
+	\colorlet{blocktitlefgcolor}{plainblack}
 	\colorlet{blockbodybgcolor}{white}
 	\colorlet{blockbodyfgcolor}{plainblack}
 	% Innerblock Colors
@@ -95,7 +110,7 @@
 	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
 	\usetitlestyle{Filled}
-	\usesotonslide{marine1}{marine2}
+	\useblockstyle{Underline}
 	\useinnerblockstyle{Table}
 	\usenotestyle{Default}
 }
