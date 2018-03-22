@@ -1,6 +1,6 @@
 \newif\ifswaptitlecolours
 
-\defineblockstyle{sotonSlide}{
+\defineblockstyle{SotonSlide}{
 	titlewidthscale=1, bodywidthscale=1, titleleft,
 	titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
 	bodyverticalshift=0pt, roundedcorners=0, linewidth=0pt, titleinnersep=1cm,
@@ -9,6 +9,21 @@
 	\ifBlockHasTitle%
 		\draw[draw=none, left color=blocktitlebgcolor, right color=blocktitlefadecolor]
 		(blocktitle.south west) rectangle (blocktitle.north east);
+	\fi%
+	\draw[draw=none, fill=blockbodybgcolor] %
+	(blockbody.north west) [rounded corners=30] -- (blockbody.south west) --
+	(blockbody.south east) [rounded corners=0]-- (blockbody.north east) -- cycle;
+}
+
+\defineblockstyle{Plain}{
+	titlewidthscale=1, bodywidthscale=1, titleleft,
+	titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+	bodyverticalshift=0pt, roundedcorners=0, linewidth=0pt, titleinnersep=1cm,
+	bodyinnersep=1cm
+}{
+	\ifBlockHasTitle%
+	\draw[draw=none, fill=blocktitlebgcolor]
+	(blocktitle.south west) rectangle (blocktitle.north east);
 	\fi%
 	\draw[draw=none, fill=blockbodybgcolor] %
 	(blockbody.north west) [rounded corners=30] -- (blockbody.south west) --
@@ -24,45 +39,45 @@
 	(\titleposleft,\titleposbottom) rectangle (\titleposright,\titlepostop); %
 }
 
-\definecolorstyle{sotonBrandStyle} {
-	\definecolor{sotonNeutral4}{HTML}{E1E8EC}
-	\definecolor{sotonMarine1}{HTML}{005c84}
-	\definecolor{sotonMarine2}{HTML}{74C9E5}
-	\definecolor{sotonMarine5}{HTML}{4BB694}
-	\definecolor{sotonMarine6}{HTML}{C1D100}
-	\definecolor{sotonHorizon1}{HTML}{FCBC00}
-	\definecolor{sotonHorizon2}{HTML}{EF7D00}
+\definecolorstyle{SotonBrandStyle} {
+	\definecolor{neutral4}{HTML}{E1E8EC}
+	\definecolor{marine1}{HTML}{005c84}
+	\definecolor{marine2}{HTML}{74C9E5}
+	\definecolor{marine5}{HTML}{4BB694}
+	\definecolor{marine6}{HTML}{C1D100}
+	\definecolor{horizon1}{HTML}{FCBC00}
+	\definecolor{horizon2}{HTML}{EF7D00}
 }{
 	% Background Colors
 	\colorlet{backgroundcolor}{white}
 	\colorlet{framecolor}{black}
 	% Title Colors
 	\colorlet{titlefgcolor}{white}
-	\colorlet{titlebgcolor}{sotonMarine1}
+	\colorlet{titlebgcolor}{marine1}
 	% Block Colors
-	\colorlet{blocktitlebgcolor}{sotonMarine1}
-	\colorlet{blocktitlefadecolor}{sotonMarine2}
+	\colorlet{blocktitlebgcolor}{marine1}
+	\colorlet{blocktitlefadecolor}{marine2}
 	\colorlet{blocktitlefgcolor}{white}
 	\colorlet{blockbodybgcolor}{white}
 	\colorlet{blockbodyfgcolor}{black}
 	% Innerblock Colors
 	\colorlet{innerblocktitlebgcolor}{white}
 	\colorlet{innerblocktitlefgcolor}{black}
-	\colorlet{innerblockbodybgcolor}{sotonNeutral4}
+	\colorlet{innerblockbodybgcolor}{neutral4}
 	\colorlet{innerblockbodyfgcolor}{black}
 	% Note colors
 	\colorlet{notefgcolor}{black}
-	\colorlet{notebgcolor}{sotonNeutral4}
-	\colorlet{notefrcolor}{sotonNeutral4}
+	\colorlet{notebgcolor}{neutral4}
+	\colorlet{notefrcolor}{neutral4}
 }
 
 \definelayouttheme{Soton}{
 	\swaptitlecoloursfalse
 	\titlegraphic{\includegraphics[width=\linewidth]{uoswhite}}
-	\usecolorstyle[]{sotonBrandStyle}
+	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
 	\usetitlestyle{Filled}
-	\useblockstyle{sotonSlide}
+	\useblockstyle{SotonSlide}
 	\useinnerblockstyle{Table}
 	\usenotestyle{Default}
 }
@@ -70,10 +85,10 @@
 \definelayouttheme{SotonPlain}{
 	\swaptitlecolourstrue
 	\titlegraphic{\includegraphics[width=\linewidth]{uosblue}}
-	\usecolorstyle[]{sotonBrandStyle}
+	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
 	\usetitlestyle{FilledSwap}
-	\useblockstyle{sotonSlide}
+	\useblockstyle{Plain}
 	\useinnerblockstyle{Table}
 	\usenotestyle{Default}
 }
