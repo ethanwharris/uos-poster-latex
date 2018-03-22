@@ -81,6 +81,15 @@
 	(\titleposright - 12\titleinnersep,\titleposbottom) rectangle (\titleposright - 2\titleinnersep,\titleposbottom - \titlelinewidth);
 }
 
+\definetitlestyle{SotonTitleFade}{
+	width=\paperwidth, roundedcorners=0, linewidth=0pt, innersep=1.5cm,
+	titletotopverticalspace=0mm, titletoblockverticalspace=20mm,
+	titlegraphictotitledistance=10pt
+}{
+	\shade[draw=none, top color=titlebgcolor, bottom color=titlebgcolor!70!]
+	(\titleposleft,\titleposbottom) rectangle (\titleposright,\titlepostop); %
+}
+
 \definetitlestyle{FadeTitle}{
 	width=\paperwidth, roundedcorners=0, linewidth=0pt, innersep=1.5cm,
 	titletotopverticalspace=0mm, titletoblockverticalspace=20mm,
@@ -131,7 +140,7 @@
 	\titlegraphic{\includegraphics[width=\linewidth]{uoswhite}}
 	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
-	\usetitlestyle{FadeTitle}
+	\usetitlestyle{SotonTitleFade}
 	\useblockstyle{Underline}
 	\useinnerblockstyle{Table}
 	\usenotestyle{Default}
