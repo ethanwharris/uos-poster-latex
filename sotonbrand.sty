@@ -81,6 +81,17 @@
 	(\titleposright - 12\titleinnersep,\titleposbottom) rectangle (\titleposright - 2\titleinnersep,\titleposbottom - \titlelinewidth);
 }
 
+\definetitlestyle{FadeTitle}{
+	width=\paperwidth, roundedcorners=0, linewidth=0pt, innersep=1.5cm,
+	titletotopverticalspace=0mm, titletoblockverticalspace=20mm,
+	titlegraphictotitledistance=10pt
+}{
+	\draw[draw=none, fill=titlebgcolor]%
+	(\titleposleft,\titleposbottom) rectangle (\titleposright,\titlepostop); %
+	\shade[draw=none, top color=titlebgcolor!95!, bottom color=backgroundcolor]
+	(\titleposleft,\titleposbottom + 0.1\titleinnersep) rectangle (\titleposright,\titleposbottom - 0.5\titleinnersep); 
+}
+
 \definecolorstyle{SotonBrandStyle}{}{
 	% Background Colors
 	\colorlet{backgroundcolor}{white}
@@ -110,6 +121,17 @@
 	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
 	\usetitlestyle{Filled}
+	\usesotonslide{marine1}{marine1!70!white}
+	\useinnerblockstyle{Table}
+	\usenotestyle{Default}
+}
+
+\definelayouttheme{SotonFade}{
+	\blacktitlefalse
+	\titlegraphic{\includegraphics[width=\linewidth]{uoswhite}}
+	\usecolorstyle[]{SotonBrandStyle}
+	\usebackgroundstyle{Default}
+	\usetitlestyle{FadeTitle}
 	\useblockstyle{Underline}
 	\useinnerblockstyle{Table}
 	\usenotestyle{Default}
@@ -121,6 +143,7 @@
 	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
 	\usetitlestyle{FilledSwap}
+	\colorlet{blocktitlefgcolor}{white}
 	\useblockstyle{Plain}
 	\useinnerblockstyle{Table}
 	\usenotestyle{Default}
