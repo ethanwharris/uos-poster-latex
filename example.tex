@@ -1,0 +1,130 @@
+\documentclass[25pt, a0paper, landscape, margin=0mm, innermargin=15mm,
+blockverticalspace=15mm, colspace=15mm, subcolspace=8mm]{tikzposter} %Default values for poster format options.
+
+\tikzposterlatexaffectionproofoff
+
+\usepackage{sotonbrand}
+
+% Commands
+\newcommand{\bs}{\textbackslash}   % backslash
+\newcommand{\cmd}[1]{{\bfseries \color{red}#1}}   % highlights command
+
+% Title, Author, Institute
+\title{The Title}
+\author{Author}
+\institute{}
+
+% -- PREDEFINED THEMES ---------------------- %
+% Choose LAYOUT:  Default, Basic, Rays, Simple, Envelope, Wave, Board, Autumn, Desert,
+
+\usetheme{Soton}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{columns}%blocks will be placed into columns
+		\column{.55}
+		\block[roundedcorners=40]{Creating the document}{
+			The document begins with:
+			\begin{quote}
+				\texttt{\bs documentclass[25pt, a0paper, portrait, margin=10mm, innermargin=15mm,
+					blockverticalspace=15mm, colspace=15mm, subcolspace=8mm]\{tikzposter\}\\
+					\bs title\{Title\}\\
+					\bs author\{Author(s)\}\\
+					\bs institute\{Institute \}\\
+					\bs titlegraphic\{Logo\}\\
+					\bs begin\{document\}\\
+					\bs maketitle}
+				\\ \dots \end{quote}
+			\begin{tikzfigure}[A figure can be made with \bs \texttt{tikzfigure}; \bs\texttt{figure} does not work]
+				\begin{tikzpicture}
+				\draw[draw=none,inner color=red, outer color=green] (0,0) circle (1.5cm);
+				\end{tikzpicture}
+			\end{tikzfigure}
+			\innerblock[]{Inner Blocks}{Inner blocks may be created inside of blocks with the command \bs\texttt{innerblock[{\it options}]\{{\it Heading}\}\{{\it Text}\}} }
+			\coloredbox{Text may be highlighted using colored boxes created by \bs\texttt{coloredbox[{\it options}]\{{\it Text\}}}}
+		}
+		\note[targetoffsetx=-.05\textwidth,targetoffsety=9.5cm,innersep=.4cm,angle=-45,connection]{Optional arguments for the format of the poster}
+		\block{The title matter}{
+			The title is made by the standard \texttt{\bs maketitle[{\it options}]} command where you can alter the \texttt{width}, the spacing between the title and top of the poster (\texttt{titletotopverticalspace}), the bottom of the title to the main content of the poster (\texttt{titletoblockverticalspace}) and the space between the title information and the logo (\texttt{titlegraphictotitleverticalspace}).
+			
+			If the default format of the title is not to your liking, you can define the placement of the different items via the \texttt{\bs settitle} command, described in the manual.
+		}
+		\block{Blocks}{
+			Blocks are arranged in a grid, by default, with width by default \texttt{\bs textwdith}.  They are created by the command
+			\begin{quote}
+				\bs\texttt{block [{\it options}] \{{\it title}\}\{{\it contents}\}}
+			\end{quote}
+			The title may be left empty, resulting in no title area being created for the block (as seen in a later block to the right).  Further blocks will be placed below automatically, at a distance defined by \texttt{blockverticalspace}.
+			
+			If you want to change the position of the title matter or the contents in the block, you may by setting in the options
+			\begin{quote}
+				\texttt{titleoffsetx, titleoffsety, bodyoffsetx, bodyoffsety}
+			\end{quote}
+			which let you adjust the vertical or horizontal position of the two parts of the block, respectively.  You can also make, relative to the default width, the title and block body by setting
+			\begin{quote}
+				\texttt{titlewidthscale, bodywidthscale}
+			\end{quote}
+			The title's alignment can be set by \texttt{titleleft, titlecenter, titleright}, the body may be shifted vertically by setting \texttt{bodyverticalshift}, and the shape of the block can be altered by setting \texttt{roundedcorners, linewidth}. The inner margins of the title can by set by \texttt{titleinnersep,bodyinnersep}.
+		}
+		
+		\column{.45}
+		\block{Columns}{
+			By default, blocks are arranged in a single column. If you want multiple columns for your poster, you may use the \texttt{columns} environment. For example,
+			\begin{quote}
+				\texttt{\noindent \bs begin\{columns\}\\
+					\bs column\{.6\}\\
+					\bs block\{\dots\}\{\dots\}\\
+					\bs column\{.4\}\\
+					\bs block\{\dots\}\{\dots\}\\
+					\bs block\{\dots\}\{\dots\}\\
+					\bs end\{columns\}
+				}
+			\end{quote}
+			will create two columns of 60\% and 40\% the available width; spacing between successive columns is handled automatically.  The block command(s) following \texttt{\bs column} are the blocks to go in that column.  The number of columns is free to be chosen, but the relative widths must all be chosen.  If the widths sum to less than 1, empty space will be seen on the right.  If they sum to more than 1, the latter columns will be cut off.
+		}
+		
+		\begin{subcolumns}
+			\subcolumn{.45}
+			\block{Subcolumns}{If you want to have an additional subdivision of columns inside a column, you may use the\\ \texttt{\bs subcolumns} environment inside of a column environment.  The functionality is similar to that of columns, but now the widths are relative to the width of the current column.}
+			
+			\subcolumn{.5}
+			\block{}{An example use of subcolumns is.
+				\begin{quote}
+					\texttt{\bs begin\{subcolumns\}\\
+						\bs subcolumn\{.6\}\\
+						\bs block\{\dots\}\{\dots\}\\
+						\bs subcolumn\{.4\}\\
+						\bs block\{\dots\}\{\dots\}\\
+						\bs block\{\dots\}\{\dots\}\\
+						\bs end\{subcolumns\}
+					}
+				\end{quote}
+			}
+		\end{subcolumns}
+		
+		\block[titlewidthscale=.8,bodywidthscale=.9,titleoffsety=9.5mm,bodyoffsety=9mm]{Changing the Poster's Appearance}{
+			If the default appearance of the title, background, blocks, and notes is not desired, you may change the colors by calling the color style along with a general layout theme with the commands
+			\begin{quote}
+				\texttt{\bs usecolorpalette}\{{\em color palette}\}\\
+				\texttt{\bs usecolorstyle\{{\em color style}\}}
+			\end{quote}
+			and
+			\begin{quote}
+				\texttt{\bs usetheme\{{\em layout style}\}}
+			\end{quote}
+			where the color palette and style and layout style are either the name of a custom made or one of the offered predefined choices listed in the manual or the comments of this poster's source.  Individual changes can be made to the style of the  background, title matter, blocks, inner blocks, and notes by using one of the following (along with either a custom-designed style or a predefined style listed in the manual or the comments of this poster's source).  These changes are made with the commands
+			\begin{quote}
+				\texttt{\bs usebackgroundstyle[]\{\}, \bs usetitlestyle[]\{\},\\ \bs useblockstyle[]\{\},\bs innerblockstyle[]\{\}, \bs usenotestyle[]\{\}}
+			\end{quote}
+			Custom styles for these can be made; this is detailed in the manual.
+		}
+		
+	\end{columns}
+	
+\end{document}
+
+
+
+\endinput
