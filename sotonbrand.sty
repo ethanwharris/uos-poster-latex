@@ -1,4 +1,22 @@
-\newif\ifswaptitlecolours
+\newif\ifblacktitle
+
+\definecolor{plainblack}{HTML}{231F20}
+\definecolor{richblack}{HTML}{00131D}
+\definecolor{neutral1}{HTML}{495961}
+\definecolor{neutral2}{HTML}{758D9A}
+\definecolor{neutral3}{HTML}{9FB1BD}
+\definecolor{neutral4}{HTML}{E1E8EC}
+\definecolor{marine1}{HTML}{005c84}
+\definecolor{marine2}{HTML}{74C9E5}
+\definecolor{marine3}{HTML}{3CBAC6}
+\definecolor{marine4}{HTML}{B3DBD2}
+\definecolor{marine5}{HTML}{4BB694}
+\definecolor{marine6}{HTML}{C1D100}
+\definecolor{horizon1}{HTML}{FCBC00}
+\definecolor{horizon2}{HTML}{EF7D00}
+\definecolor{horizon3}{HTML}{E73037}
+\definecolor{horizon4}{HTML}{D5007F}
+\definecolor{horizon5}{HTML}{8D3970}
 
 \defineblockstyle{SotonSlide}{
 	titlewidthscale=1, bodywidthscale=1, titleleft,
@@ -39,18 +57,10 @@
 	(\titleposleft,\titleposbottom) rectangle (\titleposright,\titlepostop); %
 }
 
-\definecolorstyle{SotonBrandStyle} {
-	\definecolor{neutral4}{HTML}{E1E8EC}
-	\definecolor{marine1}{HTML}{005c84}
-	\definecolor{marine2}{HTML}{74C9E5}
-	\definecolor{marine5}{HTML}{4BB694}
-	\definecolor{marine6}{HTML}{C1D100}
-	\definecolor{horizon1}{HTML}{FCBC00}
-	\definecolor{horizon2}{HTML}{EF7D00}
-}{
+\definecolorstyle{SotonBrandStyle}{}{
 	% Background Colors
 	\colorlet{backgroundcolor}{white}
-	\colorlet{framecolor}{black}
+	\colorlet{framecolor}{plainblack}
 	% Title Colors
 	\colorlet{titlefgcolor}{white}
 	\colorlet{titlebgcolor}{marine1}
@@ -59,20 +69,20 @@
 	\colorlet{blocktitlefadecolor}{marine2}
 	\colorlet{blocktitlefgcolor}{white}
 	\colorlet{blockbodybgcolor}{white}
-	\colorlet{blockbodyfgcolor}{black}
+	\colorlet{blockbodyfgcolor}{plainblack}
 	% Innerblock Colors
 	\colorlet{innerblocktitlebgcolor}{white}
-	\colorlet{innerblocktitlefgcolor}{black}
+	\colorlet{innerblocktitlefgcolor}{plainblack}
 	\colorlet{innerblockbodybgcolor}{neutral4}
-	\colorlet{innerblockbodyfgcolor}{black}
+	\colorlet{innerblockbodyfgcolor}{plainblack}
 	% Note colors
-	\colorlet{notefgcolor}{black}
+	\colorlet{notefgcolor}{plainblack}
 	\colorlet{notebgcolor}{neutral4}
 	\colorlet{notefrcolor}{neutral4}
 }
 
 \definelayouttheme{Soton}{
-	\swaptitlecoloursfalse
+	\blacktitlefalse
 	\titlegraphic{\includegraphics[width=\linewidth]{uoswhite}}
 	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
@@ -83,7 +93,7 @@
 }
 
 \definelayouttheme{SotonPlain}{
-	\swaptitlecolourstrue
+	\blacktitletrue
 	\titlegraphic{\includegraphics[width=\linewidth]{uosblue}}
 	\usecolorstyle[]{SotonBrandStyle}
 	\usebackgroundstyle{Default}
@@ -103,7 +113,7 @@
 \renewcommand\TP@maketitle{%
 	\begin{minipage}{\linewidth - \sotonlogowidth}
 		\raggedright
-		\ifswaptitlecolours \color{titlebgcolor} \else \color{titlefgcolor} \fi
+		\ifblacktitle \color{plainblack} \else \color{titlefgcolor} \fi
 		{\bfseries \Huge \sc \@title \par}
 		\vspace*{1em}
 		{\huge \@author \par}
