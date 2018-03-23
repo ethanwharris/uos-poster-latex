@@ -166,7 +166,8 @@
 
 \makeatletter
 \renewcommand\TP@maketitle{%
-	\begin{minipage}{\linewidth - \sotonlogowidth}
+	\hspace*{2cm}
+	\begin{minipage}{\linewidth - 4cm - \sotonlogowidth}
 		\raggedright
 		\ifblacktitle \color{plainblack} \else \color{titlefgcolor} \fi
 		{\bfseries \Huge \sc \@title \par}
@@ -175,10 +176,11 @@
 		\vspace*{1em}
 		{\LARGE \@institute}
 	\end{minipage}%
-	\hfill
 	\begin{minipage}{\sotonlogowidth}
 		\centering
 		\@titlegraphic
+	\end{minipage}
+	\begin{minipage}{2cm}
 	\end{minipage}
 }
 \makeatother
