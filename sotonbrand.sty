@@ -1,4 +1,6 @@
 \newif\ifblacktitle
+\newif\iflogofirst
+\logofirstfalse
 
 \definecolor{plainblack}{HTML}{231F20}
 \definecolor{richblack}{HTML}{00131D}
@@ -17,6 +19,10 @@
 \definecolor{horizon3}{HTML}{E73037}
 \definecolor{horizon4}{HTML}{D5007F}
 \definecolor{horizon5}{HTML}{8D3970}
+
+\newcommand{\sotonlogofirst}{
+	\logofirsttrue
+}
 
 \newcommand{\usesotonslide}[2]{
 	\defineblockstyle{SotonSlide}{
@@ -167,6 +173,21 @@
 \makeatletter
 \renewcommand\TP@maketitle{%
 	\hspace*{2cm}
+	\iflogofirst
+	\begin{minipage}{\sotonlogowidth}
+		\centering
+		\@titlegraphic
+	\end{minipage}
+	\begin{minipage}{\linewidth - 4cm - \sotonlogowidth}
+		\raggedleft
+		\ifblacktitle \color{plainblack} \else \color{titlefgcolor} \fi
+		{\bfseries \Huge \sc \@title \par}
+		\vspace*{1em}
+		{\huge \@author \par}
+		\vspace*{1em}
+		{\LARGE \@institute}
+	\end{minipage}
+	\else
 	\begin{minipage}{\linewidth - 4cm - \sotonlogowidth}
 		\raggedright
 		\ifblacktitle \color{plainblack} \else \color{titlefgcolor} \fi
@@ -180,6 +201,7 @@
 		\centering
 		\@titlegraphic
 	\end{minipage}
+	\fi
 	\begin{minipage}{2cm}
 	\end{minipage}
 }
